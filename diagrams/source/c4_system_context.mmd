@@ -1,0 +1,15 @@
+flowchart LR
+  customer[Customer\nUses the mobile bank]
+  security[Security analyst\nReviews selected cases]
+  system[Outgoing transfer anti-fraud system\nChecks transfer risk and routes the decision]
+  app[Mobile bank\nTransfer creation and warnings]
+  rail[Payment rail and recipient bank\nExecutes an approved transfer]
+  cbr[Bank of Russia risk data\nRisk recipient and device signals]
+
+  customer -->|creates transfer and receives result| app
+  app -->|transfer request and confirmation| system
+  system -->|approve or suspend decision| app
+  system -->|approved transfer| rail
+  cbr -->|regulatory risk signals| system
+  system -->|manual-review case| security
+  security -->|approve or reject decision| system

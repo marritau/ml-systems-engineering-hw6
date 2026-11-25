@@ -1,0 +1,17 @@
+flowchart LR
+  request[Score request adapter\nReceives transfer request]
+  validator[Schema validator\nRejects incomplete data]
+  builder[Feature builder\nNormalizes and enriches fields]
+  loader[Model version loader\nReads active model manifest]
+  scorer[Gradient boosting scorer\nCalculates fraud probability]
+  policy[Decision policy\nApplies score threshold and reason code]
+  publisher[Result publisher\nReturns decision and emits metric]
+  registry[(Model registry)]
+  feature[Feature service]
+  kafka[(Kafka)]
+
+  request --> validator --> builder --> loader --> scorer --> policy --> publisher
+  feature -->|customer and device signals| builder
+  registry -->|model artifact and version| loader
+  loader --> scorer
+  publisher -->|score event| kafka

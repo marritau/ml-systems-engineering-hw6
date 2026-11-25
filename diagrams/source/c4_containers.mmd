@@ -1,0 +1,30 @@
+flowchart LR
+  app[Mobile bank\nClient application]
+  api[Payment orchestration API\nAuthenticates and coordinates transfer]
+  feature[Feature service\nBuilds customer, transaction and device features]
+  scoring[Fraud scoring service\nReturns score and recommendation]
+  rules[Rule and fallback service\nMandatory controls and ML fallback]
+  kafka[(Event bus\nKafka)]
+  ops[(Operation store\nPostgreSQL)]
+  registry[(Model registry\nVersioned model artifacts)]
+  review[Security review queue\nCases for analyst]
+  training[Training pipeline\nQuality monitoring and retraining]
+  cbr[Bank of Russia risk data]
+  rail[Payment rail]
+
+  app -->|HTTPS transfer request| api
+  api -->|score request| scoring
+  scoring -->|feature request| feature
+  feature -->|assembled features| scoring
+  registry -->|active model version| scoring
+  scoring -->|score and reason code| rules
+  rules -->|final decision| api
+  rules -->|regulatory risk lookup| cbr
+  cbr -->|risk signals| rules
+  api -->|approve| rail
+  rules -->|manual-review task| review
+  scoring -->|score and model version event| kafka
+  api -->|payment and decision events| kafka
+  kafka -->|write transfer outcome| ops
+  ops -->|labelled outcomes| training
+  training -->|publish validated version| registry

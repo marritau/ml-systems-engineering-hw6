@@ -1,0 +1,30 @@
+flowchart LR
+  subgraph customer[Customer]
+    start((Start)) --> create[Create outgoing transfer]
+    warning[Receive suspension warning] --> confirm{Confirm transfer?}
+    confirm -- no --> cancel[Cancel transfer]
+    cancel --> done((Transfer result received))
+  end
+
+  subgraph bank[Bank payment and anti-fraud process]
+    session[Validate session and transfer] --> features[Collect transaction, customer and device features]
+    features --> availability{Scoring service available?}
+    availability -- yes --> score[Calculate fraud score]
+    availability -- no --> fallback[Apply conservative rules]
+    score --> risk{Score below 0.80 and no mandatory rule?}
+    risk -- yes --> execute[Send transfer to payment rail]
+    risk -- no --> suspend[Suspend transfer and create warning]
+    fallback --> review[Send ambiguous case to manual review]
+    suspend --> warning
+    confirm -- yes --> review
+    review --> decision{Security decision}
+    decision -- approve --> execute
+    decision -- reject --> reject[Reject transfer]
+    execute --> outcome[Store outcome for model quality]
+    reject --> outcome
+    outcome --> finish((End))
+  end
+
+  create --> session
+  execute --> done
+  reject --> done

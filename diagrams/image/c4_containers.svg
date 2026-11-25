@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="668" viewBox="0 0 2200 1050" role="img" aria-labelledby="title desc">
+  <title id="title">C4 Containers for the outgoing transfer anti-fraud process</title>
+  <desc id="desc">Containers for payment orchestration, feature construction, fraud scoring, fallback, storage, review and model training.</desc>
+  <defs><marker id="arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><path d="M0 0 L10 3.5 L0 7Z" fill="#475569"/></marker><style>text{font-family:Arial,sans-serif;fill:#172033}.title{font-size:28px;font-weight:bold}.boundary{fill:#eff6ff;stroke:#2563eb;stroke-width:2}.service{fill:#fff;stroke:#2563eb;stroke-width:2}.store{fill:#ecfdf5;stroke:#059669;stroke-width:2}.external{fill:#f8fafc;stroke:#64748b;stroke-width:2}.head{font-size:19px;font-weight:bold}.small{font-size:15px}.line{stroke:#475569;stroke-width:2;fill:none;marker-end:url(#arrow)}</style></defs>
+  <text class="title" x="1100" y="40" text-anchor="middle">C4 Containers: outgoing transfer anti-fraud process</text>
+  <rect class="boundary" x="190" y="75" width="1700" height="885" rx="10"/><text class="head" x="220" y="110">T-Bank transfer anti-fraud domain (reconstruction)</text>
+
+  <!-- External systems -->
+  <rect class="external" x="25" y="160" width="145" height="82" rx="7"/><text class="head" x="98" y="191" text-anchor="middle">Mobile bank</text><text class="small" x="98" y="216" text-anchor="middle">client application</text>
+  <rect class="external" x="2000" y="160" width="175" height="82" rx="7"/><text class="head" x="2088" y="191" text-anchor="middle">Payment rail</text><text class="small" x="2088" y="216" text-anchor="middle">recipient bank</text>
+  <rect class="external" x="1940" y="480" width="235" height="92" rx="7"/><text class="head" x="2058" y="515" text-anchor="middle">Bank of Russia</text><text class="head" x="2058" y="537" text-anchor="middle">risk data</text><text class="small" x="2058" y="558" text-anchor="middle">recipient and device signals</text>
+
+  <!-- Online decision path -->
+  <rect class="service" x="250" y="145" width="270" height="105" rx="7"/><text class="head" x="385" y="177" text-anchor="middle">Payment orchestration</text><text class="head" x="385" y="199" text-anchor="middle">API</text><text class="small" x="385" y="227" text-anchor="middle">authenticates and coordinates</text>
+  <rect class="service" x="650" y="145" width="270" height="105" rx="7"/><text class="head" x="785" y="177" text-anchor="middle">Fraud scoring service</text><text class="small" x="785" y="206" text-anchor="middle">score and recommendation</text>
+  <rect class="service" x="1050" y="145" width="270" height="105" rx="7"/><text class="head" x="1185" y="177" text-anchor="middle">Rule and fallback</text><text class="head" x="1185" y="199" text-anchor="middle">service</text><text class="small" x="1185" y="227" text-anchor="middle">mandatory controls and fallback</text>
+
+  <!-- Features, feedback and review -->
+  <rect class="service" x="650" y="400" width="270" height="105" rx="7"/><text class="head" x="785" y="432" text-anchor="middle">Feature service</text><text class="small" x="785" y="460" text-anchor="middle">customer, device and</text><text class="small" x="785" y="481" text-anchor="middle">transaction features</text>
+  <rect class="store" x="300" y="540" width="220" height="92" rx="7"/><text class="head" x="410" y="575" text-anchor="middle">Kafka event bus</text><text class="small" x="410" y="601" text-anchor="middle">decisions and outcomes</text>
+  <rect class="store" x="600" y="540" width="250" height="92" rx="7"/><text class="head" x="725" y="575" text-anchor="middle">Operation store</text><text class="small" x="725" y="601" text-anchor="middle">PostgreSQL</text>
+  <rect class="store" x="960" y="540" width="250" height="92" rx="7"/><text class="head" x="1085" y="575" text-anchor="middle">Model registry</text><text class="small" x="1085" y="601" text-anchor="middle">versioned model artifacts</text>
+  <rect class="service" x="1350" y="540" width="270" height="92" rx="7"/><text class="head" x="1485" y="575" text-anchor="middle">Security review queue</text><text class="small" x="1485" y="601" text-anchor="middle">analyst case handling</text>
+  <rect class="service" x="600" y="770" width="250" height="100" rx="7"/><text class="head" x="725" y="807" text-anchor="middle">Training pipeline</text><text class="small" x="725" y="834" text-anchor="middle">quality monitoring and retraining</text>
+
+  <!-- Request and decision relationships -->
+  <path class="line" d="M170 201H250"/><text class="small" x="210" y="187" text-anchor="middle">HTTPS request</text>
+  <path class="line" d="M520 185H650"/><text class="small" x="585" y="170" text-anchor="middle">score request</text>
+  <path class="line" d="M920 185H1050"/><text class="small" x="985" y="170" text-anchor="middle">score and reason</text>
+  <path class="line" d="M1185 250V320H385V250"/><text class="small" x="785" y="307" text-anchor="middle">final decision</text>
+  <path class="line" d="M520 170V125H1925V201H2000"/><text class="small" x="1720" y="115" text-anchor="middle">approved transfer</text>
+
+  <!-- Feature and model relationships -->
+  <path class="line" d="M750 250V400"/><text class="small" x="700" y="335">feature request</text>
+  <path class="line" d="M840 400V340H820V250"/><text class="small" x="860" y="335">assembled features</text>
+  <path class="line" d="M960 585V360H885V250"/><text class="small" x="1000" y="350">active model version</text>
+
+  <!-- Events, review, risk data and retraining -->
+  <path class="line" d="M385 250V540"/><text class="small" x="430" y="405">events</text>
+  <path class="line" d="M650 210H620V515H410V540"/><text class="small" x="535" y="502" text-anchor="middle">score and model version</text>
+  <path class="line" d="M520 586H600"/><text class="small" x="560" y="572" text-anchor="middle">outcomes</text>
+  <path class="line" d="M725 632V770"/><text class="small" x="780" y="710">labelled history</text>
+  <path class="line" d="M850 820H1085V632"/><text class="small" x="970" y="806" text-anchor="middle">publish version</text>
+  <path class="line" d="M1185 250V460H1485V540"/><text class="small" x="1320" y="447" text-anchor="middle">manual-review task</text>
+  <path class="line" d="M1320 220H1750V525H1940"/><text class="small" x="1630" y="207" text-anchor="middle">risk lookup</text>
+  <path class="line" d="M1940 545H1750V360H1260V250"/><text class="small" x="1630" y="347" text-anchor="middle">risk signals</text>
+  <text class="small" x="220" y="930">Only containers supporting the selected transfer-check process are shown. All internal service names are documented architectural assumptions.</text>
+</svg>

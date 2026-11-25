@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="576" viewBox="0 0 1500 720" role="img" aria-labelledby="title desc">
+  <title id="title">C4 System Context</title>
+  <desc id="desc">Context of an outgoing transfer anti-fraud system with customer, mobile bank, payment rail, security analyst and regulatory risk data.</desc>
+  <defs><marker id="arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><path d="M0 0 L10 3.5 L0 7Z" fill="#475569"/></marker><style>text{font-family:Arial,sans-serif;fill:#172033}.title{font-size:25px;font-weight:bold}.box{stroke-width:2}.internal{fill:#dbeafe;stroke:#2563eb}.external{fill:#f8fafc;stroke:#64748b}.person{fill:#fef3c7;stroke:#d97706}.head{font-size:19px;font-weight:bold}.small{font-size:14px}.line{stroke:#475569;stroke-width:2;fill:none;marker-end:url(#arrow)}</style></defs>
+  <text class="title" x="750" y="42" text-anchor="middle">C4 System Context: outgoing transfer anti-fraud</text>
+  <rect class="person box" x="85" y="250" width="200" height="95" rx="8"/><text class="head" x="185" y="288" text-anchor="middle">Customer</text><text class="small" x="185" y="313" text-anchor="middle">creates a transfer</text>
+  <rect class="external box" x="85" y="520" width="200" height="95" rx="8"/><text class="head" x="185" y="558" text-anchor="middle">Mobile bank</text><text class="small" x="185" y="583" text-anchor="middle">transfer creation and warnings</text>
+  <rect class="internal box" x="550" y="235" width="460" height="175" rx="9"/><text class="head" x="780" y="292" text-anchor="middle">Outgoing transfer anti-fraud system</text><text class="small" x="780" y="320" text-anchor="middle">checks transfer risk and routes a decision</text><text class="small" x="780" y="344" text-anchor="middle">inside T-Bank payment domain</text>
+  <rect class="person box" x="1215" y="250" width="200" height="95" rx="8"/><text class="head" x="1315" y="288" text-anchor="middle">Security analyst</text><text class="small" x="1315" y="313" text-anchor="middle">reviews selected cases</text>
+  <rect class="external box" x="1070" y="535" width="280" height="95" rx="8"/><text class="head" x="1210" y="570" text-anchor="middle">Payment rail and</text><text class="head" x="1210" y="592" text-anchor="middle">recipient bank</text><text class="small" x="1210" y="615" text-anchor="middle">executes approved transfer</text>
+  <rect class="external box" x="655" y="90" width="250" height="90" rx="8"/><text class="head" x="780" y="126" text-anchor="middle">Bank of Russia risk data</text><text class="small" x="780" y="151" text-anchor="middle">recipient and device signals</text>
+  <path class="line" d="M185 345V520"/><text class="small" x="215" y="438">uses mobile bank</text>
+  <path class="line" d="M285 567H420V335H550"/><text class="small" x="430" y="405">HTTPS request</text>
+  <path class="line" d="M550 375H420V567H285"/><text class="small" x="330" y="552">suspend or confirm</text>
+  <path class="line" d="M1010 325H1215"/><text class="small" x="1113" y="311" text-anchor="middle">manual-review case</text>
+  <path class="line" d="M1215 335H1010"/><text class="small" x="1113" y="360" text-anchor="middle">approve or reject</text>
+  <path class="line" d="M1010 385H1140V535"/><text class="small" x="1165" y="465">approved transfer</text>
+  <path class="line" d="M780 180V235"/><text class="small" x="840" y="215">risk signals</text>
+  <text class="small" x="50" y="685">System boundary contains the bank process reconstruction. External integrations and internal composition are detailed in the Containers diagram.</text>
+</svg>

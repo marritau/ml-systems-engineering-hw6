@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="636" viewBox="0 0 1700 900" role="img" aria-labelledby="title desc">
+  <title id="title">BPMN outgoing transfer anti-fraud check</title>
+  <desc id="desc">A two-lane BPMN process with normal scoring, fallback rules, manual review and customer confirmation.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><path d="M0 0 L10 3.5 L0 7Z" fill="#334155"/></marker>
+    <style>text{font-family:Arial,sans-serif;fill:#172033}.lane{fill:#f8fafc;stroke:#94a3b8;stroke-width:2}.task{fill:#fff;stroke:#2563eb;stroke-width:2}.event{fill:#fff;stroke:#16a34a;stroke-width:3}.end{fill:#fff;stroke:#dc2626;stroke-width:4}.gate{fill:#fff7ed;stroke:#ea580c;stroke-width:2}.flow{stroke:#334155;stroke-width:2;fill:none;marker-end:url(#arrow)}.msg{stroke:#7c3aed;stroke-width:2;stroke-dasharray:7 5;fill:none;marker-end:url(#arrow)}.title{font-size:26px;font-weight:bold}.head{font-size:19px;font-weight:bold}.small{font-size:14px}.label{font-size:14px;font-weight:bold}</style>
+  </defs>
+
+  <text class="title" x="850" y="34" text-anchor="middle">BPMN: outgoing transfer anti-fraud check</text>
+  <rect class="lane" x="20" y="60" width="1660" height="215"/><rect class="lane" x="20" y="275" width="1660" height="575"/>
+  <text class="head" x="45" y="95">Customer</text><text class="head" x="45" y="310">Bank payment and anti-fraud process</text>
+
+  <!-- Customer lane -->
+  <circle class="event" cx="100" cy="160" r="25"/><text class="small" x="100" y="203" text-anchor="middle">Start</text>
+  <rect class="task" x="155" y="125" width="175" height="70" rx="7"/><text class="head" x="243" y="153" text-anchor="middle">Create transfer</text><text class="small" x="243" y="176" text-anchor="middle">in mobile bank</text>
+  <rect class="task" x="900" y="125" width="170" height="70" rx="7"/><text class="head" x="985" y="153" text-anchor="middle">Receive warning</text><text class="small" x="985" y="176" text-anchor="middle">and decide</text>
+  <path class="gate" d="M1140 125 L1180 160 L1140 195 L1100 160Z"/><text class="small" x="1140" y="164" text-anchor="middle">Confirm?</text>
+  <rect class="task" x="1210" y="125" width="145" height="70" rx="7"/><text class="head" x="1283" y="153" text-anchor="middle">Cancel</text><text class="small" x="1283" y="176" text-anchor="middle">transfer</text>
+  <rect class="task" x="1410" y="125" width="165" height="70" rx="7"/><text class="head" x="1493" y="153" text-anchor="middle">Receive result</text><text class="small" x="1493" y="176" text-anchor="middle">transfer status</text>
+  <circle class="end" cx="1640" cy="160" r="25"/><text class="small" x="1640" y="203" text-anchor="middle">Result</text>
+
+  <!-- Bank lane: scoring path -->
+  <circle class="event" cx="100" cy="470" r="25"/>
+  <rect class="task" x="150" y="435" width="155" height="70" rx="7"/><text class="head" x="228" y="463" text-anchor="middle">Validate</text><text class="small" x="228" y="486" text-anchor="middle">session and transfer</text>
+  <rect class="task" x="360" y="435" width="175" height="70" rx="7"/><text class="head" x="448" y="463" text-anchor="middle">Collect features</text><text class="small" x="448" y="483" text-anchor="middle">transaction, customer</text><text class="small" x="448" y="500" text-anchor="middle">and device</text>
+  <path class="gate" d="M595 435 L635 470 L595 505 L555 470Z"/><text class="small" x="595" y="466" text-anchor="middle">Model</text><text class="small" x="595" y="481" text-anchor="middle">available?</text>
+  <rect class="task" x="695" y="435" width="150" height="70" rx="7"/><text class="head" x="770" y="463" text-anchor="middle">Calculate</text><text class="small" x="770" y="486" text-anchor="middle">fraud score</text>
+  <path class="gate" d="M905 435 L945 470 L905 505 L865 470Z"/><text class="small" x="905" y="466" text-anchor="middle">Risk &lt; 0.80</text><text class="small" x="905" y="481" text-anchor="middle">and no rule?</text>
+  <rect class="task" x="1015" y="435" width="150" height="70" rx="7"/><text class="head" x="1090" y="463" text-anchor="middle">Execute</text><text class="small" x="1090" y="486" text-anchor="middle">payment transfer</text>
+  <rect class="task" x="1210" y="435" width="165" height="70" rx="7"/><text class="head" x="1293" y="463" text-anchor="middle">Store outcome</text><text class="small" x="1293" y="486" text-anchor="middle">for model quality</text>
+  <circle class="end" cx="1465" cy="470" r="25"/><text class="small" x="1465" y="513" text-anchor="middle">End</text>
+
+  <!-- Bank lane: exception path -->
+  <rect class="task" x="555" y="680" width="175" height="70" rx="7"/><text class="head" x="643" y="708" text-anchor="middle">Conservative rules</text><text class="small" x="643" y="731" text-anchor="middle">fallback decision</text>
+  <rect class="task" x="790" y="680" width="175" height="70" rx="7"/><text class="head" x="878" y="708" text-anchor="middle">Manual review</text><text class="small" x="878" y="731" text-anchor="middle">security analyst</text>
+  <path class="gate" d="M1025 680 L1065 715 L1025 750 L985 715Z"/><text class="small" x="1025" y="719" text-anchor="middle">Approve?</text>
+  <rect class="task" x="1320" y="680" width="145" height="70" rx="7"/><text class="head" x="1393" y="708" text-anchor="middle">Reject</text><text class="small" x="1393" y="731" text-anchor="middle">transfer</text>
+  <rect class="task" x="875" y="565" width="180" height="70" rx="7"/><text class="head" x="965" y="593" text-anchor="middle">Suspend transfer</text><text class="small" x="965" y="616" text-anchor="middle">create warning</text>
+
+  <!-- Normal and fallback flows -->
+  <path class="flow" d="M125 160H155 M125 470H150 M305 470H360 M535 470H555 M635 470H695 M845 470H865 M945 470H1015 M1165 470H1210 M1375 470H1440"/>
+  <path class="flow" d="M595 505V715H555 M730 715H790 M965 715H985 M1065 715H1320 M1025 680V575H1090V505 M1465 715V575H1293V505 M905 505V565H965"/>
+  <path class="msg" d="M330 160V470H125 M965 565V240H985V195 M1180 160V650H878V680 M1293 435V230H1493V195"/>
+  <path class="flow" d="M1070 160H1100 M1180 160H1210 M1355 160H1410 M1575 160H1615"/>
+
+  <!-- Gateway labels -->
+  <text class="label" x="653" y="455" fill="#15803d">yes</text><text class="label" x="612" y="585" fill="#b91c1c">no</text>
+  <text class="label" x="955" y="455" fill="#15803d">yes</text><text class="label" x="950" y="550" fill="#b91c1c">no</text>
+  <text class="label" x="1040" y="665" fill="#15803d">yes</text><text class="label" x="1100" y="702" fill="#b91c1c">no</text>
+  <text class="label" x="1190" y="145" fill="#b91c1c">no</text><text class="label" x="1190" y="250" fill="#15803d">yes</text>
+  <text class="small" x="45" y="825">Assumption: threshold is 0.80. A mandatory risk rule can suspend a transfer independently of the model score.</text>
+</svg>
